@@ -5,6 +5,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="css.css">
+  <link rel="icon" type="image/png" href="Imagenes/logo.png">
 
   <style>
     body{
@@ -19,7 +20,9 @@
       margin:auto;
       margin-top:120px;
       padding:40px;
-      background:rgba(255,255,255,0.92); border:3px solid #efd8ff; box-shadow:0 20px 42px rgba(115,105,214,0.10);
+      background:rgba(255,255,255,0.92);
+      border:3px solid #efd8ff;
+      box-shadow:0 20px 42px rgba(115,105,214,0.10);
       border-radius:20px;
       overflow:hidden;
     }
@@ -303,6 +306,7 @@
       background:#ffd54f;
       border-radius:50%;
       box-shadow:0 0 0 8px rgba(255,213,79,0.22);
+      z-index:1;
     }
 
     .nube{
@@ -310,6 +314,7 @@
       background:white;
       border-radius:30px;
       opacity:0.95;
+      z-index:1;
     }
 
     .nube.n1{
@@ -334,6 +339,7 @@
       height:92px;
       background:linear-gradient(180deg,#b8efb8,#91dc91);
       border-top:3px solid #6dc66d;
+      z-index:2;
     }
 
     .flor-izq, .flor-der{
@@ -341,7 +347,7 @@
       bottom:56px;
       width:18px;
       height:42px;
-      z-index:2;
+      z-index:3;
     }
 
     .flor-izq{ left:26px; }
@@ -371,305 +377,28 @@
       line-height:1;
     }
 
-    .cuerda{
-      position:absolute;
-      top:0;
-      left:50%;
-      transform:translateX(-50%);
-      width:6px;
-      height:96px;
-      background:#b07a46;
-      border-radius:10px;
-      z-index:2;
-    }
-
-    .nudo{
-      position:absolute;
-      top:92px;
-      left:50%;
-      transform:translateX(-50%);
-      width:18px;
-      height:18px;
-      border:4px solid #b07a46;
-      border-radius:50%;
-      background:#d9b07a;
-      z-index:3;
-    }
-
-    .brainrot{
-      position:absolute;
-      left:50%;
-      top:98px;
-      transform:translateX(-50%);
-      width:210px;
-      height:310px;
-      z-index:3;
-      transform-origin:top center;
-    }
-
     .spark{
       position:absolute;
       top:34px;
       right:28px;
       font-size:28px;
       display:none;
+      z-index:6;
+    }
+
+    #threeBrainrotWrap{
+      position:absolute;
+      inset:0;
       z-index:4;
+      pointer-events:none;
     }
 
-    .cuello{
-      position:absolute;
-      top:-12px;
-      left:50%;
-      transform:translateX(-50%);
-      width:12px;
-      height:20px;
-      background:#9d6532;
-      border-radius:4px;
-      display:none;
+    #threeBrainrotWrap canvas{
+      width:100% !important;
+      height:100% !important;
+      display:block;
     }
 
-    .cabeza{
-      position:absolute;
-      top:0;
-      left:50%;
-      transform:translateX(-50%);
-      width:80px;
-      height:90px;
-      background:#c98745;
-      border:4px solid #9d6532;
-      border-radius:12px;
-      display:none;
-    }
-
-    .frente-lineas{
-      position:absolute;
-      top:6px;
-      left:8px;
-      right:8px;
-      height:10px;
-      background:
-        repeating-linear-gradient(
-          to right,
-          transparent 0,
-          transparent 8px,
-          #a06a37 8px,
-          #a06a37 12px
-        );
-      opacity:0.8;
-    }
-
-    .ojo{
-      position:absolute;
-      top:24px;
-      width:20px;
-      height:20px;
-      background:white;
-      border:3px solid #3b2a1d;
-      border-radius:4px;
-    }
-
-    .ojo.izq{ left:10px; }
-    .ojo.der{ right:10px; }
-
-    .pupila{
-      position:absolute;
-      width:9px;
-      height:9px;
-      background:#111;
-      top:5px;
-      left:5px;
-      border-radius:2px;
-    }
-
-    .nariz{
-      position:absolute;
-      left:50%;
-      top:46px;
-      transform:translateX(-50%);
-      width:10px;
-      height:16px;
-      background:#a86d39;
-      border-radius:4px;
-    }
-
-    .boca{
-      position:absolute;
-      left:50%;
-      bottom:10px;
-      transform:translateX(-50%);
-      width:26px;
-      height:10px;
-      border-bottom:4px solid #5b3720;
-      border-radius:0 0 20px 20px;
-    }
-
-    .cuerpo{
-      position:absolute;
-      top:88px;
-      left:50%;
-      transform:translateX(-50%);
-      width:100px;
-      height:136px;
-      background:#d8944f;
-      border:4px solid #a96d36;
-      border-radius:8px;
-      display:none;
-    }
-
-    .cuerpo-textura{
-      position:absolute;
-      inset:8px;
-      background:
-        repeating-linear-gradient(
-          to right,
-          rgba(150,95,40,0.35) 0,
-          rgba(150,95,40,0.35) 2px,
-          transparent 2px,
-          transparent 14px
-        ),
-        repeating-linear-gradient(
-          to bottom,
-          rgba(150,95,40,0.35) 0,
-          rgba(150,95,40,0.35) 2px,
-          transparent 2px,
-          transparent 14px
-        );
-      border-radius:4px;
-      opacity:0.7;
-    }
-
-    .brazo{
-      position:absolute;
-      top:118px;
-      width:18px;
-      height:96px;
-      background:#d8944f;
-      border:4px solid #a96d36;
-      border-radius:10px;
-      display:none;
-    }
-
-    .brazo.izq{
-      left:48px;
-      transform:rotate(12deg);
-      transform-origin:top center;
-    }
-
-    .brazo.der{
-      right:48px;
-      transform:rotate(-12deg);
-      transform-origin:top center;
-    }
-
-    .mano{
-      position:absolute;
-      width:18px;
-      height:18px;
-      background:#d8944f;
-      border:3px solid #a96d36;
-      border-radius:50%;
-      bottom:-8px;
-      left:-3px;
-      display:none;
-    }
-
-    .brazo.der .mano{
-      left:auto;
-      right:-3px;
-    }
-
-    .pierna{
-      position:absolute;
-      top:224px;
-      width:18px;
-      height:118px;
-      background:#d8944f;
-      border:4px solid #a96d36;
-      border-radius:10px;
-      display:none;
-    }
-
-    .pierna.izq{
-      left:72px;
-      transform:rotate(4deg);
-      transform-origin:top center;
-    }
-
-    .pierna.der{
-      right:72px;
-      transform:rotate(-4deg);
-      transform-origin:top center;
-    }
-
-    .pie{
-      position:absolute;
-      width:34px;
-      height:14px;
-      background:#d8944f;
-      border:3px solid #a96d36;
-      border-radius:10px 10px 6px 6px;
-      bottom:-8px;
-      left:-8px;
-    }
-
-    .bate{
-      position:absolute;
-      width:16px;
-      height:110px;
-      background:linear-gradient(180deg,#d6a06a,#b8743c);
-      border:3px solid #8e572b;
-      border-radius:12px;
-      display:none;
-      top:6px;
-      right:-10px;
-      transform:rotate(18deg);
-    }
-
-    .bate::after{
-      content:"";
-      position:absolute;
-      bottom:-8px;
-      left:50%;
-      transform:translateX(-50%);
-      width:30px;
-      height:26px;
-      background:linear-gradient(180deg,#d6a06a,#b8743c);
-      border:3px solid #8e572b;
-      border-radius:16px;
-    }
-
-    .temblor{
-      animation:temblor 0.25s linear infinite;
-    }
-
-    .ganar{
-      animation:ganar 0.8s ease-in-out infinite alternate;
-    }
-
-    .balanceo{
-      animation:balanceo 1.4s ease-in-out infinite;
-    }
-
-    @keyframes temblor{
-      0%{ transform:translateX(-50%) rotate(0deg); }
-      25%{ transform:translateX(-49%) rotate(1deg); }
-      50%{ transform:translateX(-51%) rotate(-1deg); }
-      75%{ transform:translateX(-49%) rotate(1deg); }
-      100%{ transform:translateX(-50%) rotate(0deg); }
-    }
-
-    @keyframes ganar{
-      0%{ transform:translateX(-50%) translateY(0); }
-      100%{ transform:translateX(-50%) translateY(-10px); }
-    }
-
-    @keyframes balanceo{
-      0%{ transform:translateX(-50%) rotate(-3deg); }
-      50%{ transform:translateX(-50%) rotate(3deg); }
-      100%{ transform:translateX(-50%) rotate(-3deg); }
-    }
-
-    /* QUIZ JUEGO 2 MEJORADO */
     .quiz-wrap{
       display:grid;
       grid-template-columns:1fr 320px;
@@ -900,7 +629,6 @@
       margin-bottom:8px;
     }
 
-    /* PUZZLE */
     .puzzle-wrap{
       display:grid;
       grid-template-columns:1fr 320px;
@@ -1045,14 +773,8 @@
     }
 
     @keyframes popIn{
-      0%{
-        transform:scale(0.7);
-        opacity:0;
-      }
-      100%{
-        transform:scale(1);
-        opacity:1;
-      }
+      0%{ transform:scale(0.7); opacity:0; }
+      100%{ transform:scale(1); opacity:1; }
     }
 
     .fw{
@@ -1084,14 +806,8 @@
         transform:scale(0.2);
         opacity:1;
         box-shadow:
-          0 0 0 0 currentColor,
-          0 0 0 0 currentColor,
-          0 0 0 0 currentColor,
-          0 0 0 0 currentColor,
-          0 0 0 0 currentColor,
-          0 0 0 0 currentColor,
-          0 0 0 0 currentColor,
-          0 0 0 0 currentColor;
+          0 0 0 0 currentColor, 0 0 0 0 currentColor, 0 0 0 0 currentColor, 0 0 0 0 currentColor,
+          0 0 0 0 currentColor, 0 0 0 0 currentColor, 0 0 0 0 currentColor, 0 0 0 0 currentColor;
       }
       100%{
         transform:scale(1.7);
@@ -1109,94 +825,33 @@
     }
 
     @media (max-width: 980px){
-      .juego-grid{
-        grid-template-columns:1fr;
-      }
-
-      .slide{
-        padding:0;
-      }
-
-      .puzzle-wrap,
-      .quiz-wrap{
-        grid-template-columns:1fr;
-      }
+      .juego-grid{ grid-template-columns:1fr; }
+      .slide{ padding:0; }
+      .puzzle-wrap, .quiz-wrap{ grid-template-columns:1fr; }
     }
 
     @media (max-width: 768px){
-      .contenido{
-        padding:22px;
-      }
-
-      .contenido h1{
-        font-size:34px;
-      }
-
-      .juego-card{
-        padding:20px;
-      }
-
-      .juego-card h2{
-        font-size:26px;
-      }
-
-      .letra-box{
-        width:44px;
-        height:50px;
-        font-size:24px;
-      }
-
-      .tecla{
-        width:42px;
-        height:42px;
-        font-size:16px;
-      }
-
-      .escena{
-        max-width:320px;
-      }
-
-      .felicitacion-titulo{
-        font-size:36px;
-        padding:18px 20px;
-        max-width:90%;
-      }
-
-      .mini-card{
-        font-size:16px;
-        padding:14px 18px;
-      }
-
-      .puzzle-tablero{
-        max-width:320px;
-      }
-
-      .quiz-pregunta{
-        font-size:22px;
-      }
-
-      .quiz-profe-box{
-        flex-direction:column;
-        align-items:center;
-      }
-
-      .quiz-profe-globo::before{
-        display:none;
-      }
-
-      .quiz-profe-nombre,
-      .quiz-pregunta{
-        text-align:center;
-      }
+      .contenido{ padding:22px; }
+      .contenido h1{ font-size:34px; }
+      .juego-card{ padding:20px; }
+      .juego-card h2{ font-size:26px; }
+      .letra-box{ width:44px; height:50px; font-size:24px; }
+      .tecla{ width:42px; height:42px; font-size:16px; }
+      .escena{ max-width:320px; }
+      .felicitacion-titulo{ font-size:36px; padding:18px 20px; max-width:90%; }
+      .mini-card{ font-size:16px; padding:14px 18px; }
+      .puzzle-tablero{ max-width:320px; }
+      .quiz-pregunta{ font-size:22px; }
+      .quiz-profe-box{ flex-direction:column; align-items:center; }
+      .quiz-profe-globo::before{ display:none; }
+      .quiz-profe-nombre, .quiz-pregunta{ text-align:center; }
     }
   </style>
-
-  <link rel="icon" type="image/png" href="Imagenes/logo.png">
 </head>
 
 <body>
 
-  <header>
+<header>
   <div class="main-nav">
     <div class="logo">
       <a href="index.html">
@@ -1221,756 +876,837 @@
   </div>
 </header>
 
-  <main>
-    <section class="contenido">
+<main>
+  <section class="contenido">
     <div class="page-banner juegos">
       <div class="page-banner-logo">
         <img src="Imagenes/logo.png" alt="Logo Edukidz">
       </div>
       <div class="page-banner-texto">
-<p>Aprende jugando con letras, preguntas y puzzles sobre la respiración.</p>
+        <p>Aprende jugando con letras, preguntas y puzzles sobre la respiración.</p>
       </div>
     </div>
 
+    <h1>🎮 Zona de Juegos Edukidz</h1>
+    <p>Aprende jugando con palabras sobre la respiración, los pulmones y el aire.</p>
 
-      <h1>🎮 Zona de Juegos Edukidz</h1>
-      <p>Aprende jugando con palabras sobre la respiración, los pulmones y el aire.</p>
+    <div class="menu-juegos">
+      <button class="mini-card activo" onclick="mostrarJuego(0)">1. Tung Tung Sahur</button>
+      <button class="mini-card" onclick="mostrarJuego(1)">2. Test interactivo</button>
+      <button class="mini-card" onclick="mostrarJuego(2)">3. Puzzle</button>
+    </div>
 
-      <div class="menu-juegos">
-        <button class="mini-card activo" onclick="mostrarJuego(0)">1. Tung Tung Sahur</button>
-        <button class="mini-card" onclick="mostrarJuego(1)">2. Test interactivo</button>
-        <button class="mini-card" onclick="mostrarJuego(2)">3. Puzzle</button>
-      </div>
+    <div class="slider-wrapper">
+      <div class="slider-track" id="sliderTrack">
 
-      <div class="slider-wrapper">
-        <div class="slider-track" id="sliderTrack">
+        <div class="slide">
+          <div class="juego-card">
+            <h2>🥁 Juego 1: Adivina la palabra</h2>
+            <p>Adivina la palabra antes de que aparezca completo Tung Tung Sahur.</p>
 
-          <!-- JUEGO 1 -->
-          <div class="slide">
-            <div class="juego-card">
-              <h2>🥁 Juego 1: Adivina la palabra</h2>
-              <p>Adivina la palabra antes de que aparezca completo Tung Tung Sahur.</p>
+            <div class="juego-grid">
+              <div class="panel-brainrot">
+                <div class="nombre-monstruo">Tung Tung Sahur</div>
+                <div class="subtexto">Cada error lo hace aparecer más.</div>
 
-              <div class="juego-grid">
-
-                <div class="panel-brainrot">
-                  <div class="nombre-monstruo">Tung Tung Sahur</div>
-                  <div class="subtexto">Cada error lo hace aparecer más.</div>
-
-                  <div class="escena">
-                    <div class="sol"></div>
-                    <div class="nube n1"></div>
-                    <div class="nube n2"></div>
-                    <div class="cuerda"></div>
-                    <div class="nudo"></div>
-                    <div class="spark" id="spark">✨</div>
-
-                    <div class="brainrot balanceo" id="brainrot">
-                      <div class="cuello" id="part1"></div>
-
-                      <div class="cabeza" id="part2">
-                        <div class="frente-lineas"></div>
-                        <div class="ojo izq"><div class="pupila"></div></div>
-                        <div class="ojo der"><div class="pupila"></div></div>
-                        <div class="nariz"></div>
-                        <div class="boca"></div>
-                      </div>
-
-                      <div class="cuerpo" id="part3">
-                        <div class="cuerpo-textura"></div>
-                      </div>
-
-                      <div class="brazo izq" id="part4">
-                        <div class="mano" id="part5"></div>
-                      </div>
-
-                      <div class="brazo der" id="part6">
-                        <div class="mano" id="part7"></div>
-                        <div class="bate" id="part9"></div>
-                      </div>
-
-                      <div class="pierna izq" id="part8">
-                        <div class="pie"></div>
-                      </div>
-
-                      <div class="pierna der" id="part10">
-                        <div class="pie"></div>
-                      </div>
-                    </div>
-
-                    <div class="flor-izq"></div>
-                    <div class="flor-der"></div>
-                    <div class="suelo"></div>
-                  </div>
-
-                  <div class="brainrot-badge" id="estadoBrainrot">Errores: 0 de 9</div>
-                  <div class="estado-cara" id="estadoCara">😄 Todo va muy bien</div>
+                <div class="escena">
+                  <div class="sol"></div>
+                  <div class="nube n1"></div>
+                  <div class="nube n2"></div>
+                  <div class="spark" id="spark">✨</div>
+                  <div id="threeBrainrotWrap"></div>
+                  <div class="flor-izq"></div>
+                  <div class="flor-der"></div>
+                  <div class="suelo"></div>
                 </div>
 
-                <div class="panel-palabra">
-                  <div class="pista" id="pistaTexto">Pista: órganos que usamos para respirar</div>
-                  <div class="palabra" id="palabra"></div>
-                  <div class="teclado" id="teclado"></div>
-
-                  <div class="acciones">
-                    <button onclick="nuevoJuego()">Nueva palabra</button>
-                  </div>
-
-                  <div class="errores" id="erroresTexto">Te quedan 9 intentos.</div>
-                  <div class="mensaje" id="mensaje"></div>
-
-                  <div class="contador" id="contadorAciertos">
-                    Has ganado 0 partida(s).
-                  </div>
-                </div>
-
+                <div class="brainrot-badge" id="estadoBrainrot">Errores: 0 de 9</div>
+                <div class="estado-cara" id="estadoCara">😄 Todo va muy bien</div>
               </div>
-            </div>
-          </div>
 
-          <!-- JUEGO 2 -->
-          <div class="slide">
-            <div class="juego-card">
-              <h2>📝 Juego 2: Test interactivo</h2>
-              <p>Responde con ayuda de la profe y descubre tu calificación final.</p>
+              <div class="panel-palabra">
+                <div class="pista" id="pistaTexto">Pista: órganos que usamos para respirar</div>
+                <div class="palabra" id="palabra"></div>
+                <div class="teclado" id="teclado"></div>
 
-              <div class="quiz-wrap">
-                <div class="quiz-panel">
-
-                  <div class="quiz-header-top">
-                    <div class="quiz-numero" id="quizNumero">Pregunta 1 de 8</div>
-                    <div class="quiz-vidas" id="quizVidas">❤️ ❤️ ❤️</div>
-                  </div>
-
-                  <div class="quiz-progreso-fondo">
-                    <div class="quiz-progreso-barra" id="quizBarra"></div>
-                  </div>
-
-                  <div class="quiz-profe-box">
-                    <div class="quiz-profe-avatar" id="quizAvatar">👩‍🏫</div>
-                    <div class="quiz-profe-globo">
-                      <p class="quiz-profe-nombre">La profe dice:</p>
-                      <p class="quiz-pregunta" id="quizPregunta">Cargando pregunta...</p>
-                    </div>
-                  </div>
-
-                  <div class="quiz-opciones" id="quizOpciones"></div>
-
-                  <div class="quiz-feedback" id="quizFeedback"></div>
-
-                  <div class="quiz-botones">
-                    <button onclick="siguientePreguntaQuiz()" id="btnSiguienteQuiz" style="display:none;">➡️ Siguiente</button>
-                    <button onclick="reiniciarQuiz()" id="btnReiniciarQuiz" style="display:none;">🔄 Repetir test</button>
-                  </div>
+                <div class="acciones">
+                  <button onclick="nuevoJuego()">Nueva palabra</button>
                 </div>
 
-                <div class="quiz-side">
-                  <div class="quiz-dato" id="quizAciertos">Aciertos: 0</div>
-                  <div class="quiz-calificacion" id="quizCalificacion">Calificación: 0 / 10</div>
-                  <div class="quiz-estrellas" id="quizEstrellas">⭐ 0</div>
-                  <div class="quiz-resumen" id="quizResumen">
-                    Lee con atención, responde y al final verás tu nota.
-                  </div>
+                <div class="errores" id="erroresTexto">Te quedan 9 intentos.</div>
+                <div class="mensaje" id="mensaje"></div>
 
-                  <div class="quiz-boletin" id="quizBoletin" style="display:none;">
-                    <h3>📘 Boletín final</h3>
-                    <p id="quizBoletinNota"></p>
-                    <p id="quizBoletinMensaje"></p>
-                  </div>
+                <div class="contador" id="contadorAciertos">
+                  Has ganado 0 partida(s).
                 </div>
               </div>
             </div>
           </div>
-
-          <!-- JUEGO 3 -->
-          <div class="slide">
-            <div class="juego-card">
-              <h2>🧩 Juego 3: Puzzle sorpresa</h2>
-              <p>Se elige un puzzle aleatorio. Hay 2 intermedios y 1 difícil.</p>
-
-              <div class="puzzle-wrap">
-                <div class="puzzle-tablero-panel">
-                  <div id="puzzleBoard" class="puzzle-tablero"></div>
-                </div>
-
-                <div class="puzzle-info-panel">
-                  <div class="puzzle-titulo">Puzzle aleatorio</div>
-                  <div class="puzzle-modo" id="puzzleMode">Modo: -</div>
-                  <div class="puzzle-texto" id="puzzleText">Presiona empezar para cargar un puzzle sorpresa.</div>
-                  <div class="puzzle-estado" id="puzzleStatus">Movimientos: 0</div>
-
-                  <div class="puzzle-botones">
-                    <button onclick="iniciarPuzzleAleatorio()">🎲 Puzzle aleatorio</button>
-                    <button onclick="reiniciarPuzzleActual()">🔄 Reiniciar puzzle</button>
-                  </div>
-
-                  <div class="puzzle-nota">
-                    Toca una pieza que esté al lado del cuadro vacío para moverla.
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
         </div>
+
+        <div class="slide">
+          <div class="juego-card">
+            <h2>📝 Juego 2: Test interactivo</h2>
+            <p>Responde con ayuda de la profe y descubre tu calificación final.</p>
+
+            <div class="quiz-wrap">
+              <div class="quiz-panel">
+                <div class="quiz-header-top">
+                  <div class="quiz-numero" id="quizNumero">Pregunta 1 de 8</div>
+                  <div class="quiz-vidas" id="quizVidas">❤️ ❤️ ❤️</div>
+                </div>
+
+                <div class="quiz-progreso-fondo">
+                  <div class="quiz-progreso-barra" id="quizBarra"></div>
+                </div>
+
+                <div class="quiz-profe-box">
+                  <div class="quiz-profe-avatar" id="quizAvatar">👩‍🏫</div>
+                  <div class="quiz-profe-globo">
+                    <p class="quiz-profe-nombre">La profe dice:</p>
+                    <p class="quiz-pregunta" id="quizPregunta">Cargando pregunta...</p>
+                  </div>
+                </div>
+
+                <div class="quiz-opciones" id="quizOpciones"></div>
+                <div class="quiz-feedback" id="quizFeedback"></div>
+
+                <div class="quiz-botones">
+                  <button onclick="siguientePreguntaQuiz()" id="btnSiguienteQuiz" style="display:none;">➡️ Siguiente</button>
+                  <button onclick="reiniciarQuiz()" id="btnReiniciarQuiz" style="display:none;">🔄 Repetir test</button>
+                </div>
+              </div>
+
+              <div class="quiz-side">
+                <div class="quiz-dato" id="quizAciertos">Aciertos: 0</div>
+                <div class="quiz-calificacion" id="quizCalificacion">Calificación: 0 / 10</div>
+                <div class="quiz-estrellas" id="quizEstrellas">⭐ 0</div>
+                <div class="quiz-resumen" id="quizResumen">
+                  Lee con atención, responde y al final verás tu nota.
+                </div>
+
+                <div class="quiz-boletin" id="quizBoletin" style="display:none;">
+                  <h3>📘 Boletín final</h3>
+                  <p id="quizBoletinNota"></p>
+                  <p id="quizBoletinMensaje"></p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="slide">
+          <div class="juego-card">
+            <h2>🧩 Juego 3: Puzzle sorpresa</h2>
+            <p>Se elige un puzzle aleatorio. Hay 2 intermedios y 1 difícil.</p>
+
+            <div class="puzzle-wrap">
+              <div class="puzzle-tablero-panel">
+                <div id="puzzleBoard" class="puzzle-tablero"></div>
+              </div>
+
+              <div class="puzzle-info-panel">
+                <div class="puzzle-titulo">Puzzle aleatorio</div>
+                <div class="puzzle-modo" id="puzzleMode">Modo: -</div>
+                <div class="puzzle-texto" id="puzzleText">Presiona empezar para cargar un puzzle sorpresa.</div>
+                <div class="puzzle-estado" id="puzzleStatus">Movimientos: 0</div>
+
+                <div class="puzzle-botones">
+                  <button onclick="iniciarPuzzleAleatorio()">🎲 Puzzle aleatorio</button>
+                  <button onclick="reiniciarPuzzleActual()">🔄 Reiniciar puzzle</button>
+                </div>
+
+                <div class="puzzle-nota">
+                  Toca una pieza que esté al lado del cuadro vacío para moverla.
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
       </div>
+    </div>
+  </section>
+</main>
 
-    </section>
-  </main>
+<div class="felicitacion-global" id="felicitacionGlobal">
+  <div class="fw fw1"></div>
+  <div class="fw fw2"></div>
+  <div class="fw fw3"></div>
+  <div class="fw fw4"></div>
+  <div class="fw fw5"></div>
+  <div class="fw fw6"></div>
+  <div class="fw fw7"></div>
+  <div class="fw fw8"></div>
+  <div class="fw fw9"></div>
+  <div class="fw fw10"></div>
+  <div class="felicitacion-titulo">🎉 ¡Felicidades, ganaste! 🎉</div>
+</div>
 
-  <div class="felicitacion-global" id="felicitacionGlobal">
-    <div class="fw fw1"></div>
-    <div class="fw fw2"></div>
-    <div class="fw fw3"></div>
-    <div class="fw fw4"></div>
-    <div class="fw fw5"></div>
-    <div class="fw fw6"></div>
-    <div class="fw fw7"></div>
-    <div class="fw fw8"></div>
-    <div class="fw fw9"></div>
-    <div class="fw fw10"></div>
-    <div class="felicitacion-titulo">🎉 ¡Felicidades, ganaste! 🎉</div>
-  </div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/three@0.128/examples/js/loaders/GLTFLoader.js"></script>
 
-  <script>
-    function mostrarJuego(indice){
-      const slider = document.getElementById("sliderTrack");
-      slider.style.transform = "translateX(-" + (indice * 33.3333) + "%)";
+<script>
+  function mostrarJuego(indice){
+    const slider = document.getElementById("sliderTrack");
+    slider.style.transform = "translateX(-" + (indice * 33.3333) + "%)";
 
-      const botones = document.querySelectorAll(".mini-card");
-      botones.forEach((btn, i) => {
-        btn.classList.toggle("activo", i === indice);
-      });
+    const botones = document.querySelectorAll(".mini-card");
+    botones.forEach((btn, i) => {
+      btn.classList.toggle("activo", i === indice);
+    });
 
-      if(indice === 2 && !puzzleInicializado){
-        iniciarPuzzleAleatorio();
-      }
+    if(indice === 2 && !puzzleInicializado){
+      iniciarPuzzleAleatorio();
     }
 
-    let timeoutFelicitacion = null;
+    if(indice === 0 && !threeStarted){
+      initThreeBrainrot();
+    }
+  }
 
-    function mostrarFelicitacionGlobal(texto = "🎉 ¡Felicidades, ganaste! 🎉"){
-      const felicitacion = document.getElementById("felicitacionGlobal");
-      felicitacion.querySelector(".felicitacion-titulo").textContent = texto;
-      felicitacion.classList.add("activa");
+  let timeoutFelicitacion = null;
 
-      if(timeoutFelicitacion){
-        clearTimeout(timeoutFelicitacion);
-      }
+  function mostrarFelicitacionGlobal(texto = "🎉 ¡Felicidades, ganaste! 🎉"){
+    const felicitacion = document.getElementById("felicitacionGlobal");
+    felicitacion.querySelector(".felicitacion-titulo").textContent = texto;
+    felicitacion.classList.add("activa");
 
-      timeoutFelicitacion = setTimeout(() => {
-        felicitacion.classList.remove("activa");
-      }, 3000);
+    if(timeoutFelicitacion){
+      clearTimeout(timeoutFelicitacion);
     }
 
-    /* JUEGO 1 */
-    const palabras = [
-      { palabra: "PULMONES", pista: "Pista: órganos que usamos para respirar" },
-      { palabra: "NARIZ", pista: "Pista: parte del cuerpo que limpia el aire" },
-      { palabra: "OXIGENO", pista: "Pista: gas que necesitamos para vivir" },
-      { palabra: "ALVEOLOS", pista: "Pista: bolsitas pequeñas dentro de los pulmones" },
-      { palabra: "AIRE", pista: "Pista: lo que respiramos" },
-      { palabra: "TOSER", pista: "Pista: ayuda a expulsar lo que no sirve" },
-      { palabra: "RESPIRAR", pista: "Pista: acción de tomar y sacar aire" },
-      { palabra: "CEREBRO", pista: "Pista: controla la respiración" }
-    ];
+    timeoutFelicitacion = setTimeout(() => {
+      felicitacion.classList.remove("activa");
+    }, 3000);
+  }
 
-    const tecladoLetras = "ABCDEFGHIJKLMNÑOPQRSTUVWXYZ";
-    const maxErrores = 9;
+  const palabras = [
+    { palabra: "PULMONES", pista: "Pista: órganos que usamos para respirar" },
+    { palabra: "NARIZ", pista: "Pista: parte del cuerpo que limpia el aire" },
+    { palabra: "OXIGENO", pista: "Pista: gas que necesitamos para vivir" },
+    { palabra: "ALVEOLOS", pista: "Pista: bolsitas pequeñas dentro de los pulmones" },
+    { palabra: "AIRE", pista: "Pista: lo que respiramos" },
+    { palabra: "TOSER", pista: "Pista: ayuda a expulsar lo que no sirve" },
+    { palabra: "RESPIRAR", pista: "Pista: acción de tomar y sacar aire" },
+    { palabra: "CEREBRO", pista: "Pista: controla la respiración" }
+  ];
 
-    let palabraActual = "";
-    let letrasAdivinadas = [];
-    let errores = 0;
-    let ganadas = 0;
+  const tecladoLetras = "ABCDEFGHIJKLMNÑOPQRSTUVWXYZ";
+  const maxErrores = 9;
 
-    function crearTeclado(){
-      const teclado = document.getElementById("teclado");
-      teclado.innerHTML = "";
+  let palabraActual = "";
+  let letrasAdivinadas = [];
+  let errores = 0;
+  let ganadas = 0;
 
-      tecladoLetras.split("").forEach(letra => {
-        const btn = document.createElement("button");
-        btn.className = "tecla";
-        btn.textContent = letra;
-        btn.onclick = () => probarLetra(letra, btn);
-        teclado.appendChild(btn);
-      });
+  function crearTeclado(){
+    const teclado = document.getElementById("teclado");
+    teclado.innerHTML = "";
+
+    tecladoLetras.split("").forEach(letra => {
+      const btn = document.createElement("button");
+      btn.className = "tecla";
+      btn.textContent = letra;
+      btn.onclick = () => probarLetra(letra, btn);
+      teclado.appendChild(btn);
+    });
+  }
+
+  function mostrarPalabra(){
+    const contenedor = document.getElementById("palabra");
+    contenedor.innerHTML = "";
+
+    palabraActual.split("").forEach(letra => {
+      const box = document.createElement("div");
+      box.className = "letra-box";
+      box.textContent = letrasAdivinadas.includes(letra) ? letra : "";
+      contenedor.appendChild(box);
+    });
+  }
+
+  function actualizarBrainrot(){
+    const spark = document.getElementById("spark");
+    const estadoCara = document.getElementById("estadoCara");
+
+    spark.style.display = "none";
+
+    if(errores === 0){
+      estadoCara.textContent = "😄 Todo va muy bien";
+    } else if(errores <= 2){
+      estadoCara.textContent = "🙂 Ya está apareciendo";
+    } else if(errores <= 4){
+      estadoCara.textContent = "😬 Cuidado";
+    } else if(errores <= 6){
+      estadoCara.textContent = "😵 Casi completo";
+    } else if(errores <= 8){
+      estadoCara.textContent = "🚨 Últimos intentos";
+    } else {
+      estadoCara.textContent = "🥁 Tung Tung Sahur apareció completo";
     }
 
-    function mostrarPalabra(){
-      const contenedor = document.getElementById("palabra");
-      contenedor.innerHTML = "";
+    document.getElementById("estadoBrainrot").textContent =
+      "Errores: " + errores + " de " + maxErrores;
 
-      palabraActual.split("").forEach(letra => {
-        const box = document.createElement("div");
-        box.className = "letra-box";
-        box.textContent = letrasAdivinadas.includes(letra) ? letra : "";
-        contenedor.appendChild(box);
-      });
+    document.getElementById("erroresTexto").textContent =
+      "Te quedan " + (maxErrores - errores) + " intentos.";
+
+    actualizarModeloSegunErrores();
+  }
+
+  function probarLetra(letra, boton){
+    boton.disabled = true;
+
+    if (palabraActual.includes(letra)) {
+      if (!letrasAdivinadas.includes(letra)) letrasAdivinadas.push(letra);
+    } else {
+      errores++;
     }
 
-    function ocultarTodasLasPartes(){
-      for(let i = 1; i <= 10; i++){
-        const parte = document.getElementById("part" + i);
-        if(parte) parte.style.display = "none";
-      }
+    mostrarPalabra();
+    actualizarBrainrot();
+    revisarEstadoJuego1();
+  }
+
+  function revisarEstadoJuego1(){
+    const mensaje = document.getElementById("mensaje");
+    const palabraCompleta = palabraActual.split("").every(letra => letrasAdivinadas.includes(letra));
+
+    if (palabraCompleta) {
+      mensaje.textContent = "🎉 ¡Ganaste! Descubriste la palabra.";
+      mensaje.style.color = "#2f9e44";
+      desactivarTeclado();
+      ganadas++;
+      document.getElementById("contadorAciertos").textContent =
+        "Has ganado " + ganadas + " partida(s).";
+
+      document.getElementById("spark").style.display = "block";
+      document.getElementById("estadoCara").textContent = "🌟 ¡Salvaste a Tung Tung Sahur!";
+      mostrarFelicitacionGlobal();
+      return;
     }
 
-    function actualizarBrainrot(){
-      ocultarTodasLasPartes();
-
-      if(errores >= 1) document.getElementById("part2").style.display = "block";
-      if(errores >= 2) document.getElementById("part1").style.display = "block";
-      if(errores >= 3) document.getElementById("part3").style.display = "block";
-      if(errores >= 4){
-        document.getElementById("part4").style.display = "block";
-        document.getElementById("part5").style.display = "block";
-      }
-      if(errores >= 5){
-        document.getElementById("part6").style.display = "block";
-        document.getElementById("part7").style.display = "block";
-      }
-      if(errores >= 6) document.getElementById("part8").style.display = "block";
-      if(errores >= 7) document.getElementById("part10").style.display = "block";
-      if(errores >= 8) document.getElementById("part9").style.display = "block";
-
-      const brainrot = document.getElementById("brainrot");
-      const spark = document.getElementById("spark");
-      const estadoCara = document.getElementById("estadoCara");
-
-      brainrot.classList.remove("temblor", "ganar");
-      spark.style.display = "none";
-
-      if(errores === 0){
-        estadoCara.textContent = "😄 Todo va muy bien";
-      } else if(errores <= 2){
-        estadoCara.textContent = "🙂 Ya está apareciendo";
-      } else if(errores <= 4){
-        estadoCara.textContent = "😬 Cuidado";
-      } else if(errores <= 6){
-        estadoCara.textContent = "😵 Casi completo";
-        brainrot.classList.add("temblor");
-      } else if(errores <= 8){
-        estadoCara.textContent = "🚨 Últimos intentos";
-        brainrot.classList.add("temblor");
-      } else {
-        estadoCara.textContent = "🥁 Tung Tung Sahur apareció completo";
-        brainrot.classList.add("temblor");
-      }
-
-      document.getElementById("estadoBrainrot").textContent =
-        "Errores: " + errores + " de " + maxErrores;
-
-      document.getElementById("erroresTexto").textContent =
-        "Te quedan " + (maxErrores - errores) + " intentos.";
+    if (errores >= maxErrores) {
+      mensaje.textContent = "😵 Perdiste. La palabra era: " + palabraActual;
+      mensaje.style.color = "#d94841";
+      desactivarTeclado();
     }
+  }
 
-    function probarLetra(letra, boton){
-      boton.disabled = true;
+  function desactivarTeclado(){
+    document.querySelectorAll(".tecla").forEach(btn => btn.disabled = true);
+  }
 
-      if (palabraActual.includes(letra)) {
-        if (!letrasAdivinadas.includes(letra)) letrasAdivinadas.push(letra);
-      } else {
-        errores++;
-      }
+  function nuevoJuego(){
+    const aleatoria = palabras[Math.floor(Math.random() * palabras.length)];
+    palabraActual = aleatoria.palabra;
+    letrasAdivinadas = [];
+    errores = 0;
 
-      mostrarPalabra();
-      actualizarBrainrot();
-      revisarEstadoJuego1();
-    }
+    document.getElementById("pistaTexto").textContent = aleatoria.pista;
+    document.getElementById("mensaje").textContent = "";
+    document.getElementById("mensaje").style.color = "#1f3c5c";
+    document.getElementById("spark").style.display = "none";
+    document.getElementById("estadoCara").textContent = "😄 Todo va muy bien";
 
-    function revisarEstadoJuego1(){
-      const mensaje = document.getElementById("mensaje");
-      const palabraCompleta = palabraActual.split("").every(letra => letrasAdivinadas.includes(letra));
+    crearTeclado();
+    mostrarPalabra();
+    actualizarBrainrot();
+  }
 
-      if (palabraCompleta) {
-        mensaje.textContent = "🎉 ¡Ganaste! Descubriste la palabra.";
-        mensaje.style.color = "#2f9e44";
-        desactivarTeclado();
-        ganadas++;
-        document.getElementById("contadorAciertos").textContent =
-          "Has ganado " + ganadas + " partida(s).";
+  let scene3D, camera3D, renderer3D, model3D, wrap3D;
+  let threeStarted = false;
+  let revealPlane = null;
+  let modelTopY = 0;
+  let modelBottomY = 0;
+  let baseModelY = 0;
 
-        document.getElementById("brainrot").classList.remove("temblor", "balanceo");
-        document.getElementById("brainrot").classList.add("ganar");
-        document.getElementById("spark").style.display = "block";
-        document.getElementById("estadoCara").textContent = "🌟 ¡Salvaste a Tung Tung Sahur!";
-        mostrarFelicitacionGlobal();
-        return;
-      }
+  function initThreeBrainrot(){
+    wrap3D = document.getElementById("threeBrainrotWrap");
+    if(!wrap3D || threeStarted) return;
 
-      if (errores >= maxErrores) {
-        mensaje.textContent = "😵 Perdiste. La palabra era: " + palabraActual;
-        mensaje.style.color = "#d94841";
-        desactivarTeclado();
-      }
-    }
+    threeStarted = true;
 
-    function desactivarTeclado(){
-      document.querySelectorAll(".tecla").forEach(btn => btn.disabled = true);
-    }
+    scene3D = new THREE.Scene();
 
-    function nuevoJuego(){
-      const aleatoria = palabras[Math.floor(Math.random() * palabras.length)];
-      palabraActual = aleatoria.palabra;
-      letrasAdivinadas = [];
-      errores = 0;
+    camera3D = new THREE.PerspectiveCamera(
+      35,
+      wrap3D.clientWidth / wrap3D.clientHeight,
+      0.1,
+      1000
+    );
+    camera3D.position.set(0, 0.8, 7);
 
-      document.getElementById("pistaTexto").textContent = aleatoria.pista;
-      document.getElementById("mensaje").textContent = "";
-      document.getElementById("mensaje").style.color = "#1f3c5c";
+    renderer3D = new THREE.WebGLRenderer({
+      alpha: true,
+      antialias: true
+    });
+    renderer3D.setPixelRatio(window.devicePixelRatio);
+    renderer3D.setSize(wrap3D.clientWidth, wrap3D.clientHeight);
+    renderer3D.outputEncoding = THREE.sRGBEncoding;
+    renderer3D.localClippingEnabled = true;
 
-      crearTeclado();
-      mostrarPalabra();
-      actualizarBrainrot();
+    wrap3D.innerHTML = "";
+    wrap3D.appendChild(renderer3D.domElement);
 
-      document.getElementById("brainrot").classList.remove("temblor", "ganar");
-      document.getElementById("brainrot").classList.add("balanceo");
-      document.getElementById("spark").style.display = "none";
-      document.getElementById("estadoCara").textContent = "😄 Todo va muy bien";
-    }
+    const light1 = new THREE.DirectionalLight(0xffffff, 0.55);
+    light1.position.set(3, 5, 6);
+    scene3D.add(light1);
 
-    /* JUEGO 2 QUIZ MEJORADO */
-    const quizPreguntas = [
-      {
-        pregunta: "¿Qué órganos usamos para respirar?",
-        opciones: ["Los pulmones", "Los riñones", "El estómago"],
-        correcta: 0,
-        explicacion: "Muy bien. Los pulmones son los órganos que usamos para respirar."
+    const light2 = new THREE.DirectionalLight(0xffffff, 0.35);
+    light2.position.set(-3, 2, 4);
+    scene3D.add(light2);
+
+    const ambient = new THREE.AmbientLight(0xffffff, 0.75);
+    scene3D.add(ambient);
+
+    revealPlane = new THREE.Plane(new THREE.Vector3(0, 1, 0), 9999);
+
+    const loader = new THREE.GLTFLoader();
+
+    loader.load(
+      "tung.glb",
+      function(gltf){
+        model3D = gltf.scene;
+        scene3D.add(model3D);
+        prepararModelo(model3D);
+        actualizarModeloSegunErrores();
+        animate3D();
       },
-      {
-        pregunta: "¿Por dónde entra el aire al cuerpo?",
-        opciones: ["Por la nariz o la boca", "Por el corazón", "Por el hígado"],
-        correcta: 0,
-        explicacion: "Correcto. El aire entra por la nariz o por la boca."
-      },
-      {
-        pregunta: "¿Qué gas necesita el cuerpo para vivir?",
-        opciones: ["Oxígeno", "Dióxido de carbono", "Vapor"],
-        correcta: 0,
-        explicacion: "Exacto. El cuerpo necesita oxígeno para vivir."
-      },
-      {
-        pregunta: "¿Qué gas sacamos cuando exhalamos?",
-        opciones: ["Dióxido de carbono", "Oxígeno puro", "Helio"],
-        correcta: 0,
-        explicacion: "Muy bien. Cuando exhalamos sacamos dióxido de carbono."
-      },
-      {
-        pregunta: "¿Qué parte ayuda a limpiar el aire antes de que entre?",
-        opciones: ["La nariz", "El páncreas", "Los huesos"],
-        correcta: 0,
-        explicacion: "Sí. La nariz ayuda a limpiar el aire antes de que llegue a los pulmones."
-      },
-      {
-        pregunta: "¿Qué órgano ayuda a controlar la respiración?",
-        opciones: ["El cerebro", "La vejiga", "El codo"],
-        correcta: 0,
-        explicacion: "Correcto. El cerebro ayuda a controlar la respiración."
-      },
-      {
-        pregunta: "¿Dónde ocurre el intercambio de gases?",
-        opciones: ["En los alvéolos", "En los dientes", "En las uñas"],
-        correcta: 0,
-        explicacion: "Exacto. El intercambio de gases ocurre en los alvéolos."
-      },
-      {
-        pregunta: "¿Qué ayuda a sacar del aire lo que no sirve?",
-        opciones: ["Los pelitos de la nariz y el moco", "Las pestañas", "Las rodillas"],
-        correcta: 0,
-        explicacion: "Muy bien. Los pelitos de la nariz y el moco atrapan polvo y suciedad."
+      undefined,
+      function(error){
+        console.log("No se pudo cargar el modelo 3D:", error);
       }
-    ];
+    );
+  }
 
-    let quizIndice = 0;
-    let quizAciertos = 0;
-    let quizRespondida = false;
-    let quizVidas = 3;
-    let quizEstrellas = 0;
+  function prepararModelo(obj){
+    const box = new THREE.Box3().setFromObject(obj);
+    const center = box.getCenter(new THREE.Vector3());
+    const size = box.getSize(new THREE.Vector3());
 
-    function iniciarQuiz(){
-      quizIndice = 0;
-      quizAciertos = 0;
-      quizRespondida = false;
-      quizVidas = 3;
-      quizEstrellas = 0;
+    obj.position.x -= center.x;
+    obj.position.y -= center.y;
+    obj.position.z -= center.z;
 
-      document.getElementById("btnReiniciarQuiz").style.display = "none";
-      document.getElementById("btnSiguienteQuiz").style.display = "none";
-      document.getElementById("quizBoletin").style.display = "none";
+    obj.scale.set(1.38, 1.38, 1.38);
 
-      renderPreguntaQuiz();
-      actualizarPanelQuiz();
-    }
+    obj.position.y += size.y * 0.62;
+    baseModelY = obj.position.y;
 
-    function renderPreguntaQuiz(){
-      const pregunta = quizPreguntas[quizIndice];
-      document.getElementById("quizNumero").textContent = `Pregunta ${quizIndice + 1} de ${quizPreguntas.length}`;
-      document.getElementById("quizPregunta").textContent = pregunta.pregunta;
-      document.getElementById("quizFeedback").textContent = "";
-      quizRespondida = false;
+    const newBox = new THREE.Box3().setFromObject(obj);
+    modelTopY = newBox.max.y;
+    modelBottomY = newBox.min.y;
 
-      const progreso = ((quizIndice) / quizPreguntas.length) * 100;
-      document.getElementById("quizBarra").style.width = progreso + "%";
-
-      const contenedor = document.getElementById("quizOpciones");
-      contenedor.innerHTML = "";
-
-      const opcionesMezcladas = pregunta.opciones.map((opcion, index) => ({
-        texto: opcion,
-        esCorrecta: index === pregunta.correcta
-      }));
-
-      mezclarArray(opcionesMezcladas);
-
-      opcionesMezcladas.forEach((opcion) => {
-        const btn = document.createElement("button");
-        btn.className = "quiz-opcion";
-        btn.textContent = opcion.texto;
-        btn.dataset.correcta = opcion.esCorrecta ? "true" : "false";
-        btn.onclick = () => responderQuiz(opcion.esCorrecta, btn);
-        contenedor.appendChild(btn);
-      });
-
-      document.getElementById("btnSiguienteQuiz").style.display = "none";
-    }
-
-    function responderQuiz(esCorrecta, boton){
-      if(quizRespondida) return;
-      quizRespondida = true;
-
-      const pregunta = quizPreguntas[quizIndice];
-      const botones = document.querySelectorAll(".quiz-opcion");
-
-      botones.forEach((btn) => {
-        btn.disabled = true;
-        if(btn.dataset.correcta === "true"){
-          btn.classList.add("correcta");
+    obj.traverse((child) => {
+      if(child.isMesh){
+        if(child.material){
+          if(Array.isArray(child.material)){
+            child.material = child.material.map((mat) => {
+              const m = mat.clone();
+              m.clippingPlanes = [revealPlane];
+              m.clipShadows = true;
+              return m;
+            });
+          } else {
+            child.material = child.material.clone();
+            child.material.clippingPlanes = [revealPlane];
+            child.material.clipShadows = true;
+          }
         }
-      });
-
-      if(esCorrecta){
-        boton.classList.add("correcta");
-        document.getElementById("quizFeedback").textContent = "✅ " + pregunta.explicacion;
-        document.getElementById("quizFeedback").style.color = "#2f9e44";
-        quizAciertos++;
-        quizEstrellas++;
-      } else {
-        boton.classList.add("incorrecta");
-        quizVidas--;
-        document.getElementById("quizFeedback").textContent = "❌ " + pregunta.explicacion;
-        document.getElementById("quizFeedback").style.color = "#d94841";
+        child.castShadow = false;
+        child.receiveShadow = false;
       }
+    });
 
-      actualizarPanelQuiz();
+    const maxDim = Math.max(size.x, size.y, size.z);
+    camera3D.position.set(0, size.y * 0.30, maxDim * 2.2);
+    camera3D.lookAt(0, size.y * 0.26, 0);
+  }
 
-      if(quizVidas <= 0){
-        finalizarQuiz(true);
-        return;
+  function actualizarModeloSegunErrores(){
+    if(!model3D || !revealPlane) return;
+
+    if(errores <= 0){
+      model3D.visible = false;
+      return;
+    }
+
+    model3D.visible = true;
+
+    const progreso = errores / maxErrores;
+    const porcentajeVisible = 0.28 + (progreso * 0.72);
+    const corteY = modelTopY - ((modelTopY - modelBottomY) * porcentajeVisible);
+
+    revealPlane.constant = -corteY;
+
+    model3D.position.y = baseModelY;
+
+    if(errores >= 6){
+      model3D.rotation.z = Math.sin(Date.now() * 0.004) * 0.02;
+    } else {
+      model3D.rotation.z = 0;
+    }
+  }
+
+  function animate3D(){
+    requestAnimationFrame(animate3D);
+
+    if(model3D){
+      model3D.rotation.y += 0.01;
+    }
+
+    renderer3D.render(scene3D, camera3D);
+  }
+
+  window.addEventListener("resize", () => {
+    if(!wrap3D || !renderer3D || !camera3D) return;
+    camera3D.aspect = wrap3D.clientWidth / wrap3D.clientHeight;
+    camera3D.updateProjectionMatrix();
+    renderer3D.setSize(wrap3D.clientWidth, wrap3D.clientHeight);
+  });
+
+  const quizPreguntas = [
+    {
+      pregunta: "¿Qué órganos usamos para respirar?",
+      opciones: ["Los pulmones", "Los riñones", "El estómago"],
+      correcta: 0,
+      explicacion: "Muy bien. Los pulmones son los órganos que usamos para respirar."
+    },
+    {
+      pregunta: "¿Por dónde entra el aire al cuerpo?",
+      opciones: ["Por la nariz o la boca", "Por el corazón", "Por el hígado"],
+      correcta: 0,
+      explicacion: "Correcto. El aire entra por la nariz o por la boca."
+    },
+    {
+      pregunta: "¿Qué gas necesita el cuerpo para vivir?",
+      opciones: ["Oxígeno", "Dióxido de carbono", "Vapor"],
+      correcta: 0,
+      explicacion: "Exacto. El cuerpo necesita oxígeno para vivir."
+    },
+    {
+      pregunta: "¿Qué gas sacamos cuando exhalamos?",
+      opciones: ["Dióxido de carbono", "Oxígeno puro", "Helio"],
+      correcta: 0,
+      explicacion: "Muy bien. Cuando exhalamos sacamos dióxido de carbono."
+    },
+    {
+      pregunta: "¿Qué parte ayuda a limpiar el aire antes de que entre?",
+      opciones: ["La nariz", "El páncreas", "Los huesos"],
+      correcta: 0,
+      explicacion: "Sí. La nariz ayuda a limpiar el aire antes de que llegue a los pulmones."
+    },
+    {
+      pregunta: "¿Qué órgano ayuda a controlar la respiración?",
+      opciones: ["El cerebro", "La vejiga", "El codo"],
+      correcta: 0,
+      explicacion: "Correcto. El cerebro ayuda a controlar la respiración."
+    },
+    {
+      pregunta: "¿Dónde ocurre el intercambio de gases?",
+      opciones: ["En los alvéolos", "En los dientes", "En las uñas"],
+      correcta: 0,
+      explicacion: "Exacto. El intercambio de gases ocurre en los alvéolos."
+    },
+    {
+      pregunta: "¿Qué ayuda a sacar del aire lo que no sirve?",
+      opciones: ["Los pelitos de la nariz y el moco", "Las pestañas", "Las rodillas"],
+      correcta: 0,
+      explicacion: "Muy bien. Los pelitos de la nariz y el moco atrapan polvo y suciedad."
+    }
+  ];
+
+  let quizIndice = 0;
+  let quizAciertos = 0;
+  let quizRespondida = false;
+  let quizVidas = 3;
+  let quizEstrellas = 0;
+
+  function iniciarQuiz(){
+    quizIndice = 0;
+    quizAciertos = 0;
+    quizRespondida = false;
+    quizVidas = 3;
+    quizEstrellas = 0;
+
+    document.getElementById("btnReiniciarQuiz").style.display = "none";
+    document.getElementById("btnSiguienteQuiz").style.display = "none";
+    document.getElementById("quizBoletin").style.display = "none";
+
+    renderPreguntaQuiz();
+    actualizarPanelQuiz();
+  }
+
+  function renderPreguntaQuiz(){
+    const pregunta = quizPreguntas[quizIndice];
+    document.getElementById("quizNumero").textContent = `Pregunta ${quizIndice + 1} de ${quizPreguntas.length}`;
+    document.getElementById("quizPregunta").textContent = pregunta.pregunta;
+    document.getElementById("quizFeedback").textContent = "";
+    quizRespondida = false;
+
+    const progreso = ((quizIndice) / quizPreguntas.length) * 100;
+    document.getElementById("quizBarra").style.width = progreso + "%";
+
+    const contenedor = document.getElementById("quizOpciones");
+    contenedor.innerHTML = "";
+
+    const opcionesMezcladas = pregunta.opciones.map((opcion, index) => ({
+      texto: opcion,
+      esCorrecta: index === pregunta.correcta
+    }));
+
+    mezclarArray(opcionesMezcladas);
+
+    opcionesMezcladas.forEach((opcion) => {
+      const btn = document.createElement("button");
+      btn.className = "quiz-opcion";
+      btn.textContent = opcion.texto;
+      btn.dataset.correcta = opcion.esCorrecta ? "true" : "false";
+      btn.onclick = () => responderQuiz(opcion.esCorrecta, btn);
+      contenedor.appendChild(btn);
+    });
+
+    document.getElementById("btnSiguienteQuiz").style.display = "none";
+  }
+
+  function responderQuiz(esCorrecta, boton){
+    if(quizRespondida) return;
+    quizRespondida = true;
+
+    const pregunta = quizPreguntas[quizIndice];
+    const botones = document.querySelectorAll(".quiz-opcion");
+
+    botones.forEach((btn) => {
+      btn.disabled = true;
+      if(btn.dataset.correcta === "true"){
+        btn.classList.add("correcta");
       }
+    });
 
-      if(quizIndice < quizPreguntas.length - 1){
-        document.getElementById("btnSiguienteQuiz").style.display = "inline-block";
-      } else {
-        finalizarQuiz(false);
-      }
+    if(esCorrecta){
+      boton.classList.add("correcta");
+      document.getElementById("quizFeedback").textContent = "✅ " + pregunta.explicacion;
+      document.getElementById("quizFeedback").style.color = "#2f9e44";
+      quizAciertos++;
+      quizEstrellas++;
+    } else {
+      boton.classList.add("incorrecta");
+      quizVidas--;
+      document.getElementById("quizFeedback").textContent = "❌ " + pregunta.explicacion;
+      document.getElementById("quizFeedback").style.color = "#d94841";
     }
 
-    function siguientePreguntaQuiz(){
-      quizIndice++;
-      renderPreguntaQuiz();
+    actualizarPanelQuiz();
+
+    if(quizVidas <= 0){
+      finalizarQuiz(true);
+      return;
     }
 
-    function actualizarPanelQuiz(){
-      const nota = ((quizAciertos / quizPreguntas.length) * 10).toFixed(1);
-      document.getElementById("quizAciertos").textContent = `Aciertos: ${quizAciertos} de ${quizPreguntas.length}`;
-      document.getElementById("quizCalificacion").textContent = `Calificación: ${nota} / 10`;
-      document.getElementById("quizEstrellas").textContent = `⭐ ${quizEstrellas}`;
-      document.getElementById("quizVidas").textContent = "❤️ ".repeat(Math.max(quizVidas,0)).trim() || "💔";
+    if(quizIndice < quizPreguntas.length - 1){
+      document.getElementById("btnSiguienteQuiz").style.display = "inline-block";
+    } else {
+      finalizarQuiz(false);
+    }
+  }
+
+  function siguientePreguntaQuiz(){
+    quizIndice++;
+    renderPreguntaQuiz();
+  }
+
+  function actualizarPanelQuiz(){
+    const nota = ((quizAciertos / quizPreguntas.length) * 10).toFixed(1);
+    document.getElementById("quizAciertos").textContent = `Aciertos: ${quizAciertos} de ${quizPreguntas.length}`;
+    document.getElementById("quizCalificacion").textContent = `Calificación: ${nota} / 10`;
+    document.getElementById("quizEstrellas").textContent = `⭐ ${quizEstrellas}`;
+    document.getElementById("quizVidas").textContent = "❤️ ".repeat(Math.max(quizVidas,0)).trim() || "💔";
+  }
+
+  function finalizarQuiz(sinVidas){
+    const nota = ((quizAciertos / quizPreguntas.length) * 10).toFixed(1);
+    let mensajeFinal = "";
+    let observacion = "";
+
+    if(sinVidas){
+      mensajeFinal = "💔 Te quedaste sin vidas.";
+      observacion = "Sigue practicando. Puedes volver a intentarlo.";
+    } else if(nota >= 9){
+      mensajeFinal = "🌟 ¡Excelente trabajo!";
+      observacion = "Aprendiste muchísimo sobre la respiración.";
+      mostrarFelicitacionGlobal("🏅 ¡Excelente calificación! 🎉");
+    } else if(nota >= 7){
+      mensajeFinal = "👏 ¡Muy bien!";
+      observacion = "Vas aprendiendo muy bien.";
+    } else if(nota >= 5){
+      mensajeFinal = "🙂 Bien hecho.";
+      observacion = "Puedes intentarlo otra vez para mejorar tu nota.";
+    } else {
+      mensajeFinal = "📘 Sigue practicando.";
+      observacion = "Con otro intento seguro mejoras.";
     }
 
-    function finalizarQuiz(sinVidas){
-      const nota = ((quizAciertos / quizPreguntas.length) * 10).toFixed(1);
-      let mensajeFinal = "";
-      let observacion = "";
+    document.getElementById("quizBarra").style.width = "100%";
+    document.getElementById("quizFeedback").textContent = mensajeFinal;
+    document.getElementById("quizFeedback").style.color = "#2c6fb7";
+    document.getElementById("quizResumen").textContent = observacion;
 
-      if(sinVidas){
-        mensajeFinal = "💔 Te quedaste sin vidas.";
-        observacion = "Sigue practicando. Puedes volver a intentarlo.";
-      } else if(nota >= 9){
-        mensajeFinal = "🌟 ¡Excelente trabajo!";
-        observacion = "Aprendiste muchísimo sobre la respiración.";
-        mostrarFelicitacionGlobal("🏅 ¡Excelente calificación! 🎉");
-      } else if(nota >= 7){
-        mensajeFinal = "👏 ¡Muy bien!";
-        observacion = "Vas aprendiendo muy bien.";
-      } else if(nota >= 5){
-        mensajeFinal = "🙂 Bien hecho.";
-        observacion = "Puedes intentarlo otra vez para mejorar tu nota.";
-      } else {
-        mensajeFinal = "📘 Sigue practicando.";
-        observacion = "Con otro intento seguro mejoras.";
-      }
+    document.getElementById("quizBoletin").style.display = "block";
+    document.getElementById("quizBoletinNota").textContent = "Nota final: " + nota + " / 10";
+    document.getElementById("quizBoletinMensaje").textContent = observacion;
 
-      document.getElementById("quizBarra").style.width = "100%";
-      document.getElementById("quizFeedback").textContent = mensajeFinal;
-      document.getElementById("quizFeedback").style.color = "#2c6fb7";
-      document.getElementById("quizResumen").textContent = observacion;
+    document.getElementById("btnReiniciarQuiz").style.display = "inline-block";
+    document.getElementById("btnSiguienteQuiz").style.display = "none";
 
-      document.getElementById("quizBoletin").style.display = "block";
-      document.getElementById("quizBoletinNota").textContent = "Nota final: " + nota + " / 10";
-      document.getElementById("quizBoletinMensaje").textContent = observacion;
+    document.querySelectorAll(".quiz-opcion").forEach(btn => btn.disabled = true);
+  }
 
-      document.getElementById("btnReiniciarQuiz").style.display = "inline-block";
-      document.getElementById("btnSiguienteQuiz").style.display = "none";
-
-      document.querySelectorAll(".quiz-opcion").forEach(btn => btn.disabled = true);
-    }
-
-    function reiniciarQuiz(){
-      iniciarQuiz();
-    }
-
-    /* JUEGO 3 PUZZLE */
-    const puzzleConfigs = [
-      { nombre: "Intermedio 1", imagen: "Imagenes/puzzle1.png", size: 3 },
-      { nombre: "Intermedio 2", imagen: "Imagenes/puzzle2.png", size: 3 },
-      { nombre: "Difícil", imagen: "Imagenes/puzzle3.png", size: 4 }
-    ];
-
-    let puzzleInicializado = false;
-    let puzzleActual = null;
-    let tiles = [];
-    let solvedTiles = [];
-    let moves = 0;
-
-    function iniciarPuzzleAleatorio(){
-      puzzleActual = puzzleConfigs[Math.floor(Math.random() * puzzleConfigs.length)];
-      crearPuzzle(puzzleActual);
-      puzzleInicializado = true;
-    }
-
-    function reiniciarPuzzleActual(){
-      if(!puzzleActual){
-        iniciarPuzzleAleatorio();
-        return;
-      }
-      crearPuzzle(puzzleActual);
-    }
-
-    function crearPuzzle(config){
-      const size = config.size;
-      const total = size * size;
-      solvedTiles = Array.from({length: total}, (_, i) => i);
-      tiles = [...solvedTiles];
-      moves = 0;
-
-      do{
-        mezclarArray(tiles);
-      }while(!esPuzzleValido(tiles, size) || estaResuelto());
-
-      document.getElementById("puzzleMode").textContent = "Modo: " + config.nombre + " (" + size + "x" + size + ")";
-      document.getElementById("puzzleText").textContent = " Ordena las piezas correctamente.";
-      document.getElementById("puzzleStatus").textContent = "Movimientos: 0";
-
-      renderPuzzle();
-    }
-
-    function mezclarArray(arr){
-      for(let i = arr.length - 1; i > 0; i--){
-        const j = Math.floor(Math.random() * (i + 1));
-        [arr[i], arr[j]] = [arr[j], arr[i]];
-      }
-    }
-
-    function esPuzzleValido(arr, size){
-      const filtered = arr.filter(n => n !== arr.length - 1);
-      let inversions = 0;
-
-      for(let i = 0; i < filtered.length; i++){
-        for(let j = i + 1; j < filtered.length; j++){
-          if(filtered[i] > filtered[j]) inversions++;
-        }
-      }
-
-      if(size % 2 !== 0){
-        return inversions % 2 === 0;
-      }
-
-      const emptyIndex = arr.indexOf(arr.length - 1);
-      const emptyRowFromBottom = size - Math.floor(emptyIndex / size);
-
-      if(emptyRowFromBottom % 2 === 0){
-        return inversions % 2 !== 0;
-      }else{
-        return inversions % 2 === 0;
-      }
-    }
-
-    function renderPuzzle(){
-      const board = document.getElementById("puzzleBoard");
-      const size = puzzleActual.size;
-      board.innerHTML = "";
-      board.style.gridTemplateColumns = `repeat(${size}, 1fr)`;
-
-      tiles.forEach((value, index) => {
-        const piece = document.createElement("button");
-        piece.className = "pieza";
-
-        if(value === tiles.length - 1){
-          piece.classList.add("vacia");
-        }else{
-          const row = Math.floor(value / size);
-          const col = value % size;
-          const bgX = (col / (size - 1)) * 100;
-          const bgY = (row / (size - 1)) * 100;
-
-          piece.style.backgroundImage = `url('${puzzleActual.imagen}')`;
-          piece.style.backgroundPosition = `${bgX}% ${bgY}%`;
-          piece.style.backgroundSize = `${size * 100}% ${size * 100}%`;
-          piece.onclick = () => moverPieza(index);
-        }
-
-        board.appendChild(piece);
-      });
-    }
-
-    function moverPieza(index){
-      const size = puzzleActual.size;
-      const emptyIndex = tiles.indexOf(tiles.length - 1);
-
-      if(!esAdyacente(index, emptyIndex, size)) return;
-
-      [tiles[index], tiles[emptyIndex]] = [tiles[emptyIndex], tiles[index]];
-      moves++;
-      document.getElementById("puzzleStatus").textContent = "Movimientos: " + moves;
-      renderPuzzle();
-
-      if(estaResuelto()){
-        document.getElementById("puzzleText").textContent = "¡Lo lograste! Armaste el puzzle correctamente.";
-        document.getElementById("puzzleStatus").textContent = "✅ Completado en " + moves + " movimientos";
-        mostrarFelicitacionGlobal("🧩 ¡Puzzle completado! 🎉");
-      }
-    }
-
-    function esAdyacente(a, b, size){
-      const rowA = Math.floor(a / size);
-      const colA = a % size;
-      const rowB = Math.floor(b / size);
-      const colB = b % size;
-
-      const sameRow = rowA === rowB && Math.abs(colA - colB) === 1;
-      const sameCol = colA === colB && Math.abs(rowA - rowB) === 1;
-
-      return sameRow || sameCol;
-    }
-
-    function estaResuelto(){
-      return tiles.every((value, index) => value === solvedTiles[index]);
-    }
-
-    nuevoJuego();
+  function reiniciarQuiz(){
     iniciarQuiz();
-  </script>
+  }
+
+  const puzzleConfigs = [
+    { nombre: "Intermedio 1", imagen: "Imagenes/puzzle1.png", size: 3 },
+    { nombre: "Intermedio 2", imagen: "Imagenes/puzzle2.png", size: 3 },
+    { nombre: "Difícil", imagen: "Imagenes/puzzle3.png", size: 4 }
+  ];
+
+  let puzzleInicializado = false;
+  let puzzleActual = null;
+  let tiles = [];
+  let solvedTiles = [];
+  let moves = 0;
+
+  function iniciarPuzzleAleatorio(){
+    puzzleActual = puzzleConfigs[Math.floor(Math.random() * puzzleConfigs.length)];
+    crearPuzzle(puzzleActual);
+    puzzleInicializado = true;
+  }
+
+  function reiniciarPuzzleActual(){
+    if(!puzzleActual){
+      iniciarPuzzleAleatorio();
+      return;
+    }
+    crearPuzzle(puzzleActual);
+  }
+
+  function crearPuzzle(config){
+    const size = config.size;
+    const total = size * size;
+    solvedTiles = Array.from({length: total}, (_, i) => i);
+    tiles = [...solvedTiles];
+    moves = 0;
+
+    do{
+      mezclarArray(tiles);
+    }while(!esPuzzleValido(tiles, size) || estaResuelto());
+
+    document.getElementById("puzzleMode").textContent = "Modo: " + config.nombre + " (" + size + "x" + size + ")";
+    document.getElementById("puzzleText").textContent = " Ordena las piezas correctamente.";
+    document.getElementById("puzzleStatus").textContent = "Movimientos: 0";
+
+    renderPuzzle();
+  }
+
+  function mezclarArray(arr){
+    for(let i = arr.length - 1; i > 0; i--){
+      const j = Math.floor(Math.random() * (i + 1));
+      [arr[i], arr[j]] = [arr[j], arr[i]];
+    }
+  }
+
+  function esPuzzleValido(arr, size){
+    const filtered = arr.filter(n => n !== arr.length - 1);
+    let inversions = 0;
+
+    for(let i = 0; i < filtered.length; i++){
+      for(let j = i + 1; j < filtered.length; j++){
+        if(filtered[i] > filtered[j]) inversions++;
+      }
+    }
+
+    if(size % 2 !== 0){
+      return inversions % 2 === 0;
+    }
+
+    const emptyIndex = arr.indexOf(arr.length - 1);
+    const emptyRowFromBottom = size - Math.floor(emptyIndex / size);
+
+    if(emptyRowFromBottom % 2 === 0){
+      return inversions % 2 !== 0;
+    }else{
+      return inversions % 2 === 0;
+    }
+  }
+
+  function renderPuzzle(){
+    const board = document.getElementById("puzzleBoard");
+    const size = puzzleActual.size;
+    board.innerHTML = "";
+    board.style.gridTemplateColumns = `repeat(${size}, 1fr)`;
+
+    tiles.forEach((value, index) => {
+      const piece = document.createElement("button");
+      piece.className = "pieza";
+
+      if(value === tiles.length - 1){
+        piece.classList.add("vacia");
+      }else{
+        const row = Math.floor(value / size);
+        const col = value % size;
+        const bgX = (col / (size - 1)) * 100;
+        const bgY = (row / (size - 1)) * 100;
+
+        piece.style.backgroundImage = `url('${puzzleActual.imagen}')`;
+        piece.style.backgroundPosition = `${bgX}% ${bgY}%`;
+        piece.style.backgroundSize = `${size * 100}% ${size * 100}%`;
+        piece.onclick = () => moverPieza(index);
+      }
+
+      board.appendChild(piece);
+    });
+  }
+
+  function moverPieza(index){
+    const size = puzzleActual.size;
+    const emptyIndex = tiles.indexOf(tiles.length - 1);
+
+    if(!esAdyacente(index, emptyIndex, size)) return;
+
+    [tiles[index], tiles[emptyIndex]] = [tiles[emptyIndex], tiles[index]];
+    moves++;
+    document.getElementById("puzzleStatus").textContent = "Movimientos: " + moves;
+    renderPuzzle();
+
+    if(estaResuelto()){
+      document.getElementById("puzzleText").textContent = "¡Lo lograste! Armaste el puzzle correctamente.";
+      document.getElementById("puzzleStatus").textContent = "✅ Completado en " + moves + " movimientos";
+      mostrarFelicitacionGlobal("🧩 ¡Puzzle completado! 🎉");
+    }
+  }
+
+  function esAdyacente(a, b, size){
+    const rowA = Math.floor(a / size);
+    const colA = a % size;
+    const rowB = Math.floor(b / size);
+    const colB = b % size;
+
+    const sameRow = rowA === rowB && Math.abs(colA - colB) === 1;
+    const sameCol = colA === colB && Math.abs(rowA - rowB) === 1;
+
+    return sameRow || sameCol;
+  }
+
+  function estaResuelto(){
+    return tiles.every((value, index) => value === solvedTiles[index]);
+  }
+
+  nuevoJuego();
+  iniciarQuiz();
+  initThreeBrainrot();
+</script>
 
 </body>
 </html>
